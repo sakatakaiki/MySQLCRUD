@@ -3,12 +3,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import tam.dev.data.CategoryImpl;
+import tam.dev.data.UserImpl;
 public class MainApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Connection conn = getConnection();
-		insert(conn);
+		CategoryImpl categoryImpl = new CategoryImpl(conn);
+		UserImpl userImpl = new UserImpl(conn);
+//		categoryImpl.insert();
+//		categoryImpl.update();
+//		categoryImpl.delete();
+		categoryImpl.select();
+//		userImpl.insert();
+//		userImpl.update();
+//		userImpl.delete();
+//		userImpl.select();
+		userImpl.find(3);
 	}
 	private static Connection getConnection() {
         // Tên cơ sở dữ liệu
@@ -27,17 +40,5 @@ public class MainApp {
         }
     }
 	
-	private static void insert(Connection conn) {
-        // TODO Auto-generated method stub
-        String sql = "INSERT INTO CATEGORIES VALUES(NULL, ?, ?)";
-        try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "category name");
-            stmt.setString(2, "url thumbnail");
-            stmt.execute();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+	
 }
