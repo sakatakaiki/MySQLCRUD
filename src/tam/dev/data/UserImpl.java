@@ -14,10 +14,10 @@ public class UserImpl {
 	}
 	public void insert() {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO USERS(ID, NAME, PASSWORD, ROLE) VALUES(null, ?, ?, ?)";
+        String sql = "INSERT INTO USERS(ID, EMAIL, PASSWORD, ROLE) VALUES(null, ?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "username");
+            stmt.setString(1, "gumitvtt@gmail.com");
             stmt.setString(2, "password");
             stmt.setString(3, "role3");
 
@@ -30,10 +30,10 @@ public class UserImpl {
 	
 	public void update() {
         // TODO Auto-generated method stub
-        String sql = "UPDATE USERS SET name = ? ,password = ?, role = ? WHERE id = ?";
+        String sql = "UPDATE USERS SET email = ? ,password = ?, role = ? WHERE id = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "username");
+            stmt.setString(1, "gumitvtt@gmail.com");
             stmt.setString(2, "password");
             stmt.setString(3, "role2");
             stmt.setInt(4, 1); //1 la id user can cap nhat
@@ -65,11 +65,11 @@ public class UserImpl {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String name = rs.getString("name");
+                String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
 
-                System.out.format("id:%d - name:%s - password:%s - role:%s", id, name, password, role).println();
+                System.out.format("id:%d - email:%s - password:%s - role:%s", id, email, password, role).println();
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -85,11 +85,11 @@ public class UserImpl {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String name = rs.getString("name");
+                String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
 
-                System.out.format("id:%d-email:%s-password:%s-role:%s", id, name, password, role).println();
+                System.out.format("id:%d-email:%s-password:%s-role:%s", id, email, password, role).println();
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
